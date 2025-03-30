@@ -13,7 +13,7 @@ data = generate_dataset()
 train_data, test_data = train_test_split(data, test_size=0.2, random_state=42)
 
 results = []
-depth_limits = [None, 5, 10]
+depth_limits = [None, 7, 10]
 leaf_sizes = [None, 2, 4, 8]
 type_limits = [None, 'height', 'leaf_size']
 
