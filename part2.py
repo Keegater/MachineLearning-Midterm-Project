@@ -58,13 +58,3 @@ sorted_y = test_y[sorted_indices]
 predictions = np.array([RT.RegressionTree.predict(model, x) for x in test_X])
 sorted_predictions = predictions[sorted_indices]
 
-
-plt.figure(figsize=(8, 6))
-plt.scatter(train_data[:, 0], train_data[:, 1], color='blue', label='Training Data', alpha=0.5)
-plt.scatter(test_X, test_y, color='red', label='Test Data')
-plt.plot(sorted_X, sorted_predictions, color='green', linewidth=2, label='Prediction')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('Regression Tree Approximation')
-plt.legend()
-#plt.show()
