@@ -26,10 +26,25 @@ for type_limit in type_limits:
             build_time = time.time() - start_time
             
             test_X, test_y = test_data[:, :-1], test_data[:, -1]
-            predictions = model.predict(test_X)
-            test_error = np.mean((test_y - predictions) ** 2)
+            predictions = np.array([model.predict(x.reshape(1, -1)) for x in test_X])
+            test_error = np.mean((test_y - predictions.ravel()) ** 2)
             
             results.append((type_limit, depth, leaf_size, build_time, test_error))
+
+            sorted_indices = np.argsort(test_X[:, 0])
+            sorted_X = test_X[sorted_indices]
+            sorted_predictions = predictions.ravel()[sorted_indices]
+
+            plt.figure(figsize=(8, 6))
+            plt.scatter(train_data[:, 0], train_data[:, 1], color='blue', label='Training Data', alpha=0.5)
+            plt.scatter(test_X, test_y, color='red', label='Test Data')
+            plt.plot(sorted_X, sorted_predictions, color='green', linewidth=2, label='Prediction')
+            plt.xlabel('x')
+            plt.ylabel('y')
+            plt.title(
+                f'Regression Tree Approximation\nLimiter: {type_limit}, Depth: {depth}, Leaf Size: {leaf_size}\nBuild Time: {build_time:.4f}s, Test Error: {test_error:.4f}')
+            plt.legend()
+            plt.show()
 
 print("Limiter  \t| Depth Limit   | Leaf Size     | Build Time (s) | Test Error")
 for res in results:
@@ -50,4 +65,4 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Regression Tree Approximation')
 plt.legend()
-plt.show()
+#plt.show()
