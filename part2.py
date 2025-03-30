@@ -28,8 +28,10 @@ for type_limit in type_limits:
             test_X, test_y = test_data[:, :-1], test_data[:, -1]
             predictions = np.array([model.predict(x.reshape(1, -1)) for x in test_X])
             test_error = np.mean((test_y - predictions.ravel()) ** 2)
+
+            test_height = model.tree_height()
             
-            results.append((type_limit, depth, leaf_size, build_time, test_error))
+            results.append((type_limit, depth, leaf_size, build_time, test_error, test_height))
 
             sorted_indices = np.argsort(test_X[:, 0])
             sorted_X = test_X[sorted_indices]
@@ -42,13 +44,13 @@ for type_limit in type_limits:
             plt.xlabel('x')
             plt.ylabel('y')
             plt.title(
-                f'Regression Tree Approximation\nLimiter: {type_limit}, Depth: {depth}, Leaf Size: {leaf_size}\nBuild Time: {build_time:.4f}s, Test Error: {test_error:.4f}')
+                f'Regression Tree Approximation\nLimiter: {type_limit}, Depth: {depth}, Leaf Size: {leaf_size}\nBuild Time: {build_time:.4f}s, Test Error: {test_error:.4f}, Height: {test_height}')
             plt.legend()
             plt.show()
 
-print("Limiter  \t| Depth Limit   | Leaf Size     | Build Time (s) | Test Error")
+print("Limiter  \t| Depth Limit   | Leaf Size     | Build Time (s) | Test Error | Height")
 for res in results:
-    print(f"{res[0]}    \t| {res[1]}\t\t| {res[2]}\t\t|{res[3]:.4f}\t\t | {res[4]:.4f}")
+    print(f"{res[0]}    \t| {res[1]}\t\t| {res[2]}\t\t|{res[3]:.6f}\t\t | {res[4]:.9f}\t\t  | {res[5]}")
 
 sorted_indices = np.argsort(test_X[:, 0])
 sorted_X = test_X[sorted_indices]

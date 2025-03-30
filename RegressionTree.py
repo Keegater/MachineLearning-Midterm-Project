@@ -136,6 +136,17 @@ class RegressionTree:
         path.append(f"Predict {node['value']:.3f}")
         return path
 
+    def tree_height(self, node=None):
+        # set node to root
+        if node is None:
+            node = self.tree
+        # leaf height is 0
+        if "feature" not in node:
+            return 0
+        # recurse on children to get height
+        return 1 + max(self.tree_height(node["left"]), self.tree_height(node["right"]))
+
+
 # example usage:
 if __name__ == "__main__":
     # Create a small synthetic dataset.
