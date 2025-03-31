@@ -52,9 +52,4 @@ print("Limiter  \t| Depth Limit   | Leaf Size     | Build Time (s) | Test Error 
 for res in results:
     print(f"{res[0]}    \t| {res[1]}\t\t| {res[2]}\t\t|{res[3]:.6f}\t\t | {res[4]:.9f}\t\t  | {res[5]}")
 
-sorted_indices = np.argsort(test_X[:, 0])
-sorted_X = test_X[sorted_indices]
-sorted_y = test_y[sorted_indices]
-predictions = np.array([RT.RegressionTree.predict(model, x) for x in test_X])
-sorted_predictions = predictions[sorted_indices]
 
