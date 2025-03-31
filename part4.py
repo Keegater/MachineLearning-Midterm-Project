@@ -75,6 +75,4 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# Print table of predictions vs actual values
-df = pd.DataFrame(comparison_table, columns=["Step", "Actual x1", "Actual x2", "Predicted x1", "Predicted x2"])
-print(df.head(10).to_string(index=False))  # Show first 10 steps
+

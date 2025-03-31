@@ -94,6 +94,4 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# === Show comparison table ===
-df = pd.DataFrame(comparison_table, columns=["Step", "x", "z", "True x'", "True z'", "Pred x'", "Pred z'"])
-print(df.head(10).to_string(index=False))  # Show first 10 steps
+
