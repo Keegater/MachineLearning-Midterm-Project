@@ -5,7 +5,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 
-# from the write up from gtghe pdf
 def one_step(x, z):
     if x > 1:
         x_next = 0
@@ -26,7 +25,7 @@ def generate_program_samples(n_samples=1000):
     return X, y
 
 
-# prediction using two regression trees
+# prediction using two trees
 def predict_next_state(tree_x, tree_z, X):
     pred_x = np.array([tree_x.predict(x) for x in X])
     pred_z = np.array([tree_z.predict(x) for x in X])
@@ -35,10 +34,11 @@ def predict_next_state(tree_x, tree_z, X):
 X, y = generate_program_samples()
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-
+# Prepare trees
 train_data_x = np.column_stack((X_train, y_train[:, 0]))
 train_data_z = np.column_stack((X_train, y_train[:, 1]))
 
+# Train trees
 tree_x = RT.RegressionTree(train_data_x, limit_type=None)
 tree_z = RT.RegressionTree(train_data_z, limit_type=None)
 

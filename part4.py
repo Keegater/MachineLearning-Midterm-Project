@@ -4,7 +4,7 @@ import RegressionTree as RT
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Function to generate samples from the pdf
+# Function to generate samples
 def generate_system_samples(n_samples=500):
     x1 = np.random.uniform(-5, 5, n_samples)
     x2 = np.random.uniform(-5, 5, n_samples)
@@ -32,7 +32,7 @@ train_data_tree2 = np.column_stack((X_train, y_train[:, 1]))
 tree1 = RT.RegressionTree(train_data_tree1, limit_type=None)
 tree2 = RT.RegressionTree(train_data_tree2, limit_type=None)
 
-
+# actual and predicted
 initial_state = np.array([0.5, 1.5]).reshape(1, -1)
 predicted_trajectory = [initial_state.flatten()]
 actual_trajectory = [initial_state.flatten()]
