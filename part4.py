@@ -14,6 +14,7 @@ def generate_system_samples(n_samples=500):
     next_states = np.column_stack((x1_next, x2_next))
     return current_states, next_states
 
+
 # Predict using two trees
 def predict_multi_output(tree1, tree2, X):
     pred1 = np.array([tree1.predict(x) for x in X])

@@ -10,6 +10,7 @@ def one_step(x, z):
         x_next = 0
     else:
         x_next = x + 0.2
+
     z_next = z + x_next
     return x_next, z_next
 
